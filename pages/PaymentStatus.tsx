@@ -14,7 +14,6 @@ export const PaymentStatus = () => {
   const initialPaymentLink = location.state?.paymentLink;
   
   const [status, setStatus] = useState<string>('pending');
-  const [isPolling, setIsPolling] = useState(true);
   const [loadingManual, setLoadingManual] = useState(false);
   
   const pollIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -54,7 +53,6 @@ export const PaymentStatus = () => {
     // Check immediately then every 5s
     checkStatus();
     pollIntervalRef.current = setInterval(checkStatus, 5000);
-    setIsPolling(true);
   };
 
   const stopPolling = () => {
@@ -62,7 +60,6 @@ export const PaymentStatus = () => {
       clearInterval(pollIntervalRef.current);
       pollIntervalRef.current = null;
     }
-    setIsPolling(false);
   };
 
   const handlePaymentSuccess = () => {
