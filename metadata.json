@@ -1,0 +1,5 @@
+{
+  "name": "Delivery App",
+  "description": "A complete food delivery frontend for ordering, tracking, and account management.",
+  "requestFramePermissions": []
+}
