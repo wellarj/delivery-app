@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -262,7 +262,8 @@ export const Checkout = () => {
     setEditingItem(item);
   };
   
-  const confirmEditItem = (product: Product, quantity: number, notes?: string) => {
+  // Use underscore for unused parameter 'product' to satisfy noUnusedParameters lint rule
+  const confirmEditItem = (_: Product, quantity: number, notes?: string) => {
     if (editingItem) {
         updateCartItem(editingItem.tempId, quantity, notes);
         setEditingItem(null);
