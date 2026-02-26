@@ -38,6 +38,9 @@ export const Orders = () => {
 
   // Helper to safely parse items from JSON string or return array
   const getOrderItems = (order: Order): OrderItem[] => {
+    if (order.items_summary && Array.isArray(order.items_summary)) {
+        return order.items_summary;
+    }
     if (!order.items) return [];
     if (Array.isArray(order.items)) return order.items;
     try {
@@ -278,10 +281,16 @@ export const Orders = () => {
                                 </div>
                                 <div>
                                     <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Pagamento</p>
-                                    <p className="text-gray-700 font-medium mb-3">
-                                        {order.payment_method === 'CARD' ? 'Cartão de Crédito' : order.payment_method === 'CASH' ? 'Dinheiro / Entrega' : 'PIX'}
-                                        {isPaid(order) && <span className="text-green-600 ml-2 font-bold">✓ Pago</span>}
-                                    </p>
+                                    {order.payment_display ? (
+                                         <p className="text-gray-700 font-medium mb-3">
+                                            {order.payment_display}
+                                         </p>
+                                    ) : (
+                                         <p className="text-gray-700 font-medium mb-3">
+                                            {order.payment_method === 'CARD' ? 'Cartão de Crédito' : order.payment_method === 'CASH' ? 'Dinheiro / Entrega' : 'PIX'}
+                                            {isPaid(order) && <span className="text-green-600 ml-2 font-bold">✓ Pago</span>}
+                                        </p>
+                                    )}
                                     
                                     {/* Detailed Price Breakdown */}
                                     <div className="space-y-2 mb-4 border-t border-gray-100 pt-3">

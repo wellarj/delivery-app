@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL points to the directory, not the file directly, to avoid redirect issues on some servers
-const API_URL = 'https://www.araujodev.com.br/api-delivery/';
+const API_URL = 'https://leonelaraujo1749557515857.0461178.meusitehostgator.com.br/api-delivery/';
 
 export const api = axios.create({
   baseURL: API_URL,

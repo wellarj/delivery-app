@@ -42,7 +42,7 @@ export interface OrderItemOption {
 export interface OrderItem {
   id: number;
   product_id: number;
-  name: string;
+  name?: string; // Changed to optional as API might return product_name
   product_name?: string; // Added to match new SQL query
   image_url?: string;
   quantity: number;
@@ -62,6 +62,9 @@ export interface Order {
   coupon_code?: string;
   notes?: string;
   items?: OrderItem[] | string; // Can be string (JSON from DB) or array
+  items_summary?: OrderItem[]; // New field from API
+  payment_display?: string; // New field from API
+  items_count?: number;
   // Property added to handle get_order response which includes billing info
   billing?: {
     status: string;
